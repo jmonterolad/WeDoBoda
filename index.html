@@ -263,6 +263,7 @@
       
           try {
             // Guardar los datos en Firestore
+            console.log('Intentando guardar los datos en Firestore...');
             await db.collection('rsvp').add({
               name,
               guest: guest || null, // Si no hay acompañante, guardar como null
@@ -270,6 +271,7 @@
               timestamp: firebase.firestore.FieldValue.serverTimestamp()
             });
       
+            console.log('Datos guardados exitosamente.');
             alert('Gracias por confirmar tu asistencia.');
             form.reset(); // Reiniciar el formulario
           } catch (error) {
