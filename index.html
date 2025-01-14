@@ -6,6 +6,9 @@
     <title>Invitación de Boda</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+    <!-- Firebase Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore-compat.js"></script>
     <style>
         body {
             font-family: 'Source Serif Pro', serif;
@@ -160,11 +163,6 @@
         <img src="img/Miles_Millones.png" alt="">
     </div>
 
-    <!-- Footer -->
-    <!-- <footer class="w-full py-4 mt-8 bg-gray-200">
-        <p class="text-sm text-gray-600">Con cariño, [Tu Nombre] & [Nombre de tu Pareja]</p>
-    </footer> -->
-
     <script>
         // Fecha de la boda
         const weddingDate = new Date("2025-03-15T14:30:00").getTime();
@@ -199,87 +197,61 @@
         // Inicializar el contador
         updateCountdown();
     </script>
-
-    <!-- <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
       
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyDkGd25yZgqbLdJeWzSaz9VNqrXD50nRpE",
-          authDomain: "bodawedo.firebaseapp.com",
-          projectId: "bodawedo",
-          storageBucket: "bodawedo.firebasestorage.app",
-          messagingSenderId: "467420226700",
-          appId: "1:467420226700:web:66c4467bea375b5b8a07a9",
-          measurementId: "G-CZ7642L3RW"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-      </script> -->
-      
-      <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js"></script>
       <script>
-        // Configuración de Firebase
-        const firebaseConfig = {
-          apiKey: "AIzaSyDkGd25yZgqbLdJeWzSaz9VNqrXD50nRpE",
-          authDomain: "bodawedo.firebaseapp.com",
-          projectId: "bodawedo",
-          storageBucket: "bodawedo.firebasestorage.app",
-          messagingSenderId: "467420226700",
-          appId: "1:467420226700:web:66c4467bea375b5b8a07a9",
-          measurementId: "G-CZ7642L3RW"
-        };
+        document.addEventListener('DOMContentLoaded', () => {
+          // Configuración de Firebase
+          const firebaseConfig = {
+            apiKey: "AIzaSyDkGd25yZgqbLdJeWzSaz9VNqrXD50nRpE",
+            authDomain: "bodawedo.firebaseapp.com",
+            projectId: "bodawedo",
+            storageBucket: "bodawedo.firebasestorage.app",
+            messagingSenderId: "467420226700",
+            appId: "1:467420226700:web:66c4467bea375b5b8a07a9",
+            measurementId: "G-CZ7642L3RW"
+          };
       
-        // Inicializar Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        form.addEventListener('submit', async (e) => {
-            // Aquí usas db
+          // Inicializar Firebase
+          const app = firebase.initializeApp(firebaseConfig);
+      
+          // Inicializar Firestore
+          const db = firebase.firestore();
+      
+          // Referencia al formulario
+          const form = document.getElementById('rsvp-form');
+      
+          // Manejar el evento de envío del formulario
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            console.log('El formulario fue enviado.');
+      
+            const name = document.getElementById('name').value.trim();
+            const guest = document.getElementById('guest').value.trim();
+            const confirmation = document.getElementById('confirmation').value;
+      
+            if (!name || !confirmation) {
+              alert('Por favor, completa los campos obligatorios.');
+              return;
+            }
+      
+            try {
+              console.log('Intentando guardar los datos en Firestore...');
+              await db.collection('rsvp').add({
+                name,
+                guest: guest || null,
+                confirmation,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+              });
+              console.log('Datos guardados exitosamente.');
+              alert('Gracias por confirmar tu asistencia.');
+              form.reset();
+            } catch (error) {
+              console.error('Error al guardar los datos:', error);
+              alert('Hubo un error al enviar los datos. Inténtalo de nuevo.');
+            }
+          });
         });
+      </script>
       
-        // Referencia al formulario
-        const form = document.getElementById('rsvp-form');
-      
-        // Manejar el evento de envío del formulario
-        form.addEventListener('submit', async (e) => {
-          e.preventDefault();
-      
-          // Capturar los datos del formulario
-          const name = document.getElementById('name').value.trim();
-          const guest = document.getElementById('guest').value.trim();
-          const confirmation = document.getElementById('confirmation').value;
-      
-          if (!name || !confirmation) {
-            alert('Por favor, completa los campos obligatorios.');
-            return;
-          }
-      
-          try {
-            // Guardar los datos en Firestore
-            console.log('Intentando guardar los datos en Firestore...');
-            await db.collection('rsvp').add({
-              name,
-              guest: guest || null, // Si no hay acompañante, guardar como null
-              confirmation,
-              timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            });
-      
-            console.log('Datos guardados exitosamente.');
-            alert('Gracias por confirmar tu asistencia.');
-            form.reset(); // Reiniciar el formulario
-          } catch (error) {
-            console.error('Error al guardar los datos: ', error);
-            alert('Hubo un error al enviar los datos. Inténtalo de nuevo.');
-          }
-        });
-      </script>      
 </body>
 </html>
