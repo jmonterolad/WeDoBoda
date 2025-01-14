@@ -241,9 +241,10 @@
         // Inicializar Firebase
         const app = firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
-      </script>
+        form.addEventListener('submit', async (e) => {
+            // Aquí usas db
+        });
       
-      <script>
         // Referencia al formulario
         const form = document.getElementById('rsvp-form');
       
