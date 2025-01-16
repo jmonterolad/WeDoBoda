@@ -27,6 +27,13 @@
             color: #000000;
         }
 
+        h3 {
+            font-family: 'Source Serif Pro', serif;
+            font-weight: 400;
+            font-size: 1.0em;
+            color: #000000;
+        }
+
         p {
             font-family: 'Source Serif Pro', serif;
             font-weight: 300;
@@ -98,7 +105,7 @@
 
         #countdown {
             font-size: 1.5rem;
-            color: #000000; /* Puedes personalizar los colores */
+            color: #000000;
         }
 
         .ubicacion {
@@ -123,9 +130,9 @@
             background-color: #FAFAFA;
         }
 
-        .queremos-negative{
+        /* .queremos-negative{
             margin-top: -4px;
-        }
+        } */
 
         .dress-negative{
             margin-top: -6px;
@@ -174,7 +181,9 @@
     <main class="flex flex-col items-center justify-center w-full max-w-md px-4 mt-8">
         <h2 class="text-md mb-5"><b>DETALLES DE LA BODA</b></h2>
 
-        <button class="border py-2 px-8">CEREMONIA</button>
+        <div class="border py-2 px-8">
+            <h3>CEREMONIA</h3>
+        </div>
 
         <div class="my-6">
             <img src="img/Iglesia.png" alt="">
@@ -186,25 +195,14 @@
             <p class="mb-3">Planes de Rendero</p>
             <p><b>2:30 PM</b></p>
         </div>
-
-        <!-- <div class="flex flex-row my-6 ubicacion">
-            <button class="py-2 px-4"><a href="">Ubicación</a></button>
-        </div> -->
-
-        <!-- <div class="flex gap-4">
-            <a href="https://www.google.com/maps?q=13.69294,-89.21819" target="_blank" rel="noopener noreferrer">
-                <button class="bg-blue-500 text-white px-4 py-2 rounded">Abrir en Google Maps</button>
-            </a>
-            <a href="https://waze.com/ul?ll=13.69294,-89.21819&navigate=yes" target="_blank" rel="noopener noreferrer">
-                <button class="bg-green-500 text-white px-4 py-2 rounded">Abrir en Waze</button>
-            </a>
-        </div> -->
         
-        <a href="https://waze.com/ul?ll=13.643367,-89.187677&navigate=yes" target="_blank" rel="noopener noreferrer" class="my-6 ubicacion">
+        <a href="https://waze.com/ul?ll=13.64341,-89.187634&navigate=yes" target="_blank" rel="noopener noreferrer" class="mt-4 mb-8 ubicacion">
             <button class="px-4 py-2">Ubicación</button>
-        </a>          
+        </a>        
 
-        <button class="border py-2 px-8 mt-10">RECEPCIÓN</button>
+        <div class="border py-2 px-8">
+            <h3>RECEPCIÓN</h3>
+        </div>
 
         <div class="py-8">
             <img src="img/Quadra.png" alt="Quadra Logo">
@@ -216,9 +214,9 @@
             <p><b>4:00 PM</b></p>
         </div>
 
-        <div class="flex flex-row mt-6 mb-12 ubicacion">
-            <button class="py-2 px-4"><a href="">Ubicación</a></button>
-        </div>
+        <a href="https://waze.com/ul?ll=13.652894,-89.197719&navigate=yes" target="_blank" rel="noopener noreferrer" class="mt-4 mb-8 ubicacion">
+            <button class="px-4 py-2">Ubicación</button>
+        </a>
     </main>
 
     <div class="dress-negative">
@@ -295,7 +293,7 @@
             const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
     
-            // Actualizar el HTML
+            // Actualiza el HTML
             document.getElementById("weeks").innerText = weeks.toString().padStart(2, '0');
             document.getElementById("days").innerText = days.toString().padStart(2, '0');
             document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
