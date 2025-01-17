@@ -1,37 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitación de Boda</title>
+    <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@200;300;400;500;700&display=swap"
+        rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
     <!-- Firebase Firestore -->
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore-compat.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <style>
         body {
             font-family: 'Source Serif Pro', serif;
             font-style: normal;
             font-weight: 200;
-            background-image:url(img/Fondo.png);
+            background-image: url(img/Fondo.png);
             background-repeat: repeat;
             background-size: cover;
             background-position: center;
         }
-        
+
         h2 {
             font-family: 'Source Serif Pro', serif;
             font-weight: 300;
             font-size: 1.3em;
-            color: #000000;
+            color: #584E42;
         }
 
         h3 {
             font-family: 'Source Serif Pro', serif;
             font-weight: 400;
             font-size: 1.0em;
-            color: #000000;
+            color: #584E42;
         }
 
         p {
@@ -39,7 +47,7 @@
             font-weight: 300;
             font-size: 1.2rem;
             line-height: 1.6;
-            color: #000000;
+            color: #584E42;
         }
 
         .confirmar-asistencia {
@@ -129,29 +137,31 @@
         .form-card {
             background-color: #FAFAFA;
         }
-
-        /* .queremos-negative{
-            margin-top: -4px;
-        } */
-
-        .dress-negative{
-            margin-top: -6px;
-            margin-bottom: -23px;
-        }
     </style>
 </head>
+
 <body class="sm:container sm:mx-auto flex flex-col items-center justify-center min-h-screen text-center">
     <!-- Encabezado -->
-     <div id="banner">
-        <img src="img/Banner.png" alt="">
-     </div>
+    <div id="banner" class="relative">
+        <img src="img/foto_wedo_1.png" alt="">
 
-     <div class="queremos-negative">
-        <img src="img/Group 21.png" alt="">
-     </div>
+        <img src="img/animacion_wedo_1.gif" alt="GIF decorativo"
+            class="absolute top-10 left-1/2 transform -translate-x-1/2 w-96 h-auto">
+    </div>
 
-     <!-- Contador -->
-     <div class="contador my-8">
+    <div class="bg-cover bg-center h-20 w-full flex flex-col justify-center items-center pt-4"
+        style="background-image: url('img/fondo_1.png');">
+        <img src="img/compaltil.png" alt="compartir" class="p-8" id="image">
+    </div>
+
+    <div class="bg-cover bg-center h-10 w-full flex flex-col justify-center items-center mt-0"
+        style="background-image: url('img/fondo_1.png');">
+        <img src="img/junto.png" alt="junto" class="px-6 pb-6" id="image">
+    </div>
+
+
+    <!-- Contador -->
+    <div class="contador my-8">
         <h2>SOLO FALTAN</h2>
         <div id="countdown" class="flex justify-center gap-6 text-center">
             <div>
@@ -170,16 +180,16 @@
                 <span id="minutes" class="block text-3xl contador-numbers">00</span>
                 <span class="block text-sm contador-text">MINUTOS</span>
             </div>
-        </div>    
-     </div>
+        </div>
+    </div>
 
-     <div>
+    <div>
         <img src="img/Foto_1.png" alt="">
-     </div>
+    </div>
 
     <!-- Cuerpo principal -->
     <main class="flex flex-col items-center justify-center w-full max-w-md px-4 mt-8">
-        <h2 class="text-md mb-5"><b>DETALLES DE LA BODA</b></h2>
+        <h2 id="heading" class="text-md mb-5"><b>DETALLES DE LA BODA</b></h2>
 
         <div class="border py-2 px-8">
             <h3>CEREMONIA</h3>
@@ -195,10 +205,11 @@
             <p class="mb-3">Planes de Rendero</p>
             <p><b>2:30 PM</b></p>
         </div>
-        
-        <a href="https://waze.com/ul?ll=13.64341,-89.187634&navigate=yes" target="_blank" rel="noopener noreferrer" class="mt-4 mb-8 ubicacion">
+
+        <a href="https://waze.com/ul?ll=13.64341,-89.187634&navigate=yes" target="_blank" rel="noopener noreferrer"
+            class="mt-4 mb-8 ubicacion">
             <button class="px-4 py-2">Ubicación</button>
-        </a>        
+        </a>
 
         <div class="border py-2 px-8">
             <h3>RECEPCIÓN</h3>
@@ -214,62 +225,63 @@
             <p><b>4:00 PM</b></p>
         </div>
 
-        <a href="https://waze.com/ul?ll=13.652894,-89.197719&navigate=yes" target="_blank" rel="noopener noreferrer" class="mt-4 mb-8 ubicacion">
+        <a href="https://waze.com/ul?ll=13.652894,-89.197719&navigate=yes" target="_blank" rel="noopener noreferrer"
+            class="mt-4 mb-8 ubicacion">
             <button class="px-4 py-2">Ubicación</button>
         </a>
     </main>
 
-    <div class="dress-negative">
-        <img src="img/Dress_Code.png" alt="">
+    <div>
+        <img src="img/grupo_dressCode.png" alt="Dress Code">
     </div>
 
     <div>
         <img src="img/Foto_2.png" alt="">
     </div>
 
-    <div>
-        <img src="img/Regalo.png" alt="">
+    <div class="bg-cover bg-center h-40 w-full flex flex-col justify-center items-center pt-4"
+        style="background-image: url('img/fondo_1.png');">
+        <img src="img/grupo_regalo.png" alt="compartir" class="p-8" id="image">
     </div>
 
-    
-
+    <!-- Formulario -->
     <div class="flex flex-col items-center justify-center w-full max-w-md px-6 mt-8">
         <div class="w-full shadow-lg p-6 mb-6 form-card">
             <div class="flex flex-col items-center justify-center mb-3">
-                <img src="img/Te esperamos.png" alt="">
+                <img src="img/TeEsperamos_1.png" alt="te esperamos" class="max-h-10">
             </div>
             <div class="flex flex-col items-center justify-center mb-3">
-                <img src="img/R.S.V.P.png" alt="">
+                <img src="img/RSVP_1.png" alt="rsvp" class="max-h-3">
             </div>
             <h2 class="confirmar-asistencia">CONFIRMA TU ASISTENCIA</h2>
 
             <div class="my-4">
                 <form id="rsvp-form" class="flex flex-col gap-4 p-2 max-w-md mx-auto">
                     <label class="block text-left">
-                      <span>Nombre</span>
-                      <input type="text" id="name" required class="mt-1 block w-full shadow-sm focus:ring">
+                        <span>Nombre</span>
+                        <input type="text" id="name" required class="mt-1 block w-full shadow-sm focus:ring">
                     </label>
-                  
+
                     <label class="block text-left">
-                      <span>Acompañante/s</span>
-                      <input type="text" id="guest" class="mt-1 block w-full shadow-sm">
+                        <span>Acompañante/s</span>
+                        <input type="text" id="guest" class="mt-1 block w-full shadow-sm">
                     </label>
-                  
+
                     <label class="block text-left">
-                      <span>Confirmar asistencia</span>
-                      <select id="confirmation" required class="mt-1 py-2 block w-full shadow-sm">
-                        <option value="">Selecciona una opción</option>
-                        <option value="si">Sí</option>
-                        <option value="no">No</option>
-                      </select>
+                        <span>Confirmar asistencia</span>
+                        <select id="confirmation" required class="mt-1 py-2 block w-full shadow-sm">
+                            <option value="">Selecciona una opción</option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                        </select>
                     </label>
-                  
+
                     <button type="submit" class="enviar-form shadow-md mt-4">Enviar</button>
-                  </form>
+                </form>
             </div>
 
             <div class="flex flex-col items-center justify-center mb-3">
-                <img src="img/ninos.png" alt="">
+                <img src="img/ninos1.png" alt="ninos" class="max-h-6">
             </div>
         </div>
     </div>
@@ -281,92 +293,125 @@
     <script>
         // Fecha de la boda
         const weddingDate = new Date("2025-03-15T14:30:00").getTime();
-    
+
         function updateCountdown() {
             const now = new Date().getTime();
             const timeLeft = weddingDate - now;
-    
+
             // Cálculos para semanas, días, horas y minutos
             const totalDays = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
             const weeks = Math.floor(totalDays / 7);
             const days = totalDays % 7;
             const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-    
+
             // Actualiza el HTML
             document.getElementById("weeks").innerText = weeks.toString().padStart(2, '0');
             document.getElementById("days").innerText = days.toString().padStart(2, '0');
             document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
             document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-    
+
             // Detener el contador si llega la fecha
             if (timeLeft < 0) {
                 clearInterval(countdownInterval);
                 document.getElementById("countdown").innerHTML = "¡Hoy es el gran día!";
             }
         }
-    
+
         // Actualizar cada segundo
         const countdownInterval = setInterval(updateCountdown, 1000);
-    
+
         // Inicializar el contador
         updateCountdown();
     </script>
-      
-      <script>
+
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
-          // Configuración de Firebase
-          const firebaseConfig = {
-            apiKey: "AIzaSyDkGd25yZgqbLdJeWzSaz9VNqrXD50nRpE",
-            authDomain: "bodawedo.firebaseapp.com",
-            projectId: "bodawedo",
-            storageBucket: "bodawedo.firebasestorage.app",
-            messagingSenderId: "467420226700",
-            appId: "1:467420226700:web:66c4467bea375b5b8a07a9",
-            measurementId: "G-CZ7642L3RW"
-          };
-      
-          // Inicializar Firebase
-          const app = firebase.initializeApp(firebaseConfig);
-      
-          // Inicializar Firestore
-          const db = firebase.firestore();
-      
-          // Referencia al formulario
-          const form = document.getElementById('rsvp-form');
-      
-          // Manejar el evento de envío del formulario
-          form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            console.log('El formulario fue enviado.');
-      
-            const name = document.getElementById('name').value.trim();
-            const guest = document.getElementById('guest').value.trim();
-            const confirmation = document.getElementById('confirmation').value;
-      
-            if (!name || !confirmation) {
-              alert('Por favor, completa los campos obligatorios.');
-              return;
-            }
-      
-            try {
-              console.log('Intentando guardar los datos en Firestore...');
-              await db.collection('rsvp').add({
-                name,
-                guest: guest || null,
-                confirmation,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-              });
-              console.log('Datos guardados exitosamente.');
-              alert('Gracias por confirmar tu asistencia.');
-              form.reset();
-            } catch (error) {
-              console.error('Error al guardar los datos:', error);
-              alert('Hubo un error al enviar los datos. Inténtalo de nuevo.');
-            }
-          });
+            // Configuración de Firebase
+            const firebaseConfig = {
+                apiKey: "AIzaSyDkGd25yZgqbLdJeWzSaz9VNqrXD50nRpE",
+                authDomain: "bodawedo.firebaseapp.com",
+                projectId: "bodawedo",
+                storageBucket: "bodawedo.firebasestorage.app",
+                messagingSenderId: "467420226700",
+                appId: "1:467420226700:web:66c4467bea375b5b8a07a9",
+                measurementId: "G-CZ7642L3RW"
+            };
+
+            // Inicializar Firebase
+            const app = firebase.initializeApp(firebaseConfig);
+
+            // Inicializar Firestore
+            const db = firebase.firestore();
+
+            // Referencia al formulario
+            const form = document.getElementById('rsvp-form');
+
+            // Manejar el evento de envío del formulario
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                console.log('El formulario fue enviado.');
+
+                const name = document.getElementById('name').value.trim();
+                const guest = document.getElementById('guest').value.trim();
+                const confirmation = document.getElementById('confirmation').value;
+
+                if (!name || !confirmation) {
+                    alert('Por favor, completa los campos obligatorios.');
+                    return;
+                }
+
+                try {
+                    console.log('Intentando guardar los datos en Firestore...');
+                    await db.collection('rsvp').add({
+                        name,
+                        guest: guest || null,
+                        confirmation,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    console.log('Datos guardados exitosamente.');
+                    alert('Gracias por confirmar tu asistencia.');
+                    form.reset();
+                } catch (error) {
+                    console.error('Error al guardar los datos:', error);
+                    alert('Hubo un error al enviar los datos. Inténtalo de nuevo.');
+                }
+            });
         });
-      </script>
-      
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Registrar el plugin ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Animar el título
+            gsap.from('#heading', {
+                scrollTrigger: '#heading', // Elemento que activa la animación
+                opacity: 0,
+                y: 50,
+                duration: 1,
+            });
+
+            // Animar el párrafo
+            // gsap.from('#paragraph', {
+            //     scrollTrigger: '#paragraph',
+            //     opacity: 0,
+            //     y: 50,
+            //     duration: 1,
+            //     delay: 0.3,
+            // });
+
+            // Animar la imagen
+            gsap.from('#image', {
+                scrollTrigger: '#image',
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: 0.6,
+            });
+        });
+    </script>
 </body>
+
 </html>
