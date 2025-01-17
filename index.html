@@ -190,19 +190,19 @@
     <main class="flex flex-col items-center justify-center w-full max-w-md px-4 mt-8">
         <h2 id="heading" class="text-md mb-5"><b>DETALLES DE LA BODA</b></h2>
 
-        <div class="border py-2 px-8">
+        <div id="heading" class="border py-2 px-8">
             <h3>CEREMONIA</h3>
         </div>
 
-        <div class="my-6">
+        <div id="paragraph" class="my-6">
             <img src="img/Iglesia.png" alt="">
         </div>
 
         <div>
-            <p><b>Parroquia San Antonio de Padua</b></p>
-            <p>Santuario Ntra. Sra. De Fátima</p>
-            <p class="mb-3">Planes de Rendero</p>
-            <p><b>2:30 PM</b></p>
+            <p id="paragraph"><b>Parroquia San Antonio de Padua</b></p>
+            <p id="paragraph">Santuario Ntra. Sra. De Fátima</p>
+            <p id="paragraph" class="mb-3">Planes de Rendero</p>
+            <p id="paragraph"><b>2:30 PM</b></p>
         </div>
 
         <a href="https://waze.com/ul?ll=13.64341,-89.187634&navigate=yes" target="_blank" rel="noopener noreferrer"
@@ -210,18 +210,18 @@
             <button class="px-4 py-2">Ubicación</button>
         </a>
 
-        <div class="border py-2 px-8">
+        <div id="heading" class="border py-2 px-8">
             <h3>RECEPCIÓN</h3>
         </div>
 
-        <div class="py-8">
+        <div id="paragraph" class="py-8">
             <img src="img/Quadra.png" alt="Quadra Logo">
         </div>
 
         <div>
-            <p>LA QUADRA</p>
-            <p class="mb-3">Planes de Rendero</p>
-            <p><b>4:00 PM</b></p>
+            <p id="paragraph">LA QUADRA</p>
+            <p id="paragraph" class="mb-3">Planes de Rendero</p>
+            <p id="paragraph"><b>4:00 PM</b></p>
         </div>
 
         <a href="https://waze.com/ul?ll=13.652894,-89.197719&navigate=yes" target="_blank" rel="noopener noreferrer"
@@ -238,24 +238,14 @@
         <img src="img/Foto_2.png" alt="">
     </div>
 
-    <!-- <div class="bg-cover bg-center h-20 w-full flex flex-col justify-center items-center relative pt-6"
-        style="background-image: url('img/fondo_sobre.png');">
-        <img src="img/grupo_mail.png" alt="regalo" class="p-4 relative z-10" id="image">
-    </div>
-
-    <div class="bg-cover bg-center h-36 w-full flex flex-col justify-center items-center relative"
-        style="background-image: url('img/fondo_sobre.png');">
-        <img src="img/grupo_agradecemos.png" alt="regalo" class="p-8 relative z-10" id="image">
-    </div> -->
-
     <div class="bg-cover bg-center h-24 w-full flex flex-col justify-center items-center pt-4"
         style="background-image: url('img/fondo_sobre.png');">
-        <img src="img/grupo_mail.png" alt="compartir" class="p-4 relative z-10" id="image">
+        <img src="img/grupo_mail.png" alt="compartir" id="paragraph" class="p-4">
     </div>
 
     <div class="bg-cover bg-center h-20 w-full flex flex-col justify-center items-center pb-4"
         style="background-image: url('img/fondo_sobre.png');">
-        <img src="img/grupo_agradecemos.png" alt="compartir" class="p-4" id="image">
+        <img src="img/grupo_agradecemos.png" alt="compartir" id="paragraph" class="p-4">
     </div>
 
     <!-- Formulario -->
@@ -393,87 +383,6 @@
             });
         });
     </script>
-
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Registrar el plugin ScrollTrigger
-            gsap.registerPlugin(ScrollTrigger);
-
-            // Animar el título
-            gsap.from('#heading', {
-                scrollTrigger: '#heading', // Elemento que activa la animación
-                opacity: 0,
-                y: 50,
-                duration: 1,
-            });
-
-            // Animar el párrafo
-            gsap.from('#paragraph', {
-                scrollTrigger: '#paragraph',
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                delay: 0.3,
-            });
-
-            // Animar la imagen
-            gsap.from('#image', {
-                scrollTrigger: '#image',
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                delay: 0.6,
-            });
-        });
-    </script> -->
-
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Registrar el plugin ScrollTrigger
-            gsap.registerPlugin(ScrollTrigger);
-
-            // Animar el título
-            gsap.from('#heading', {
-                scrollTrigger: {
-                    trigger: '#heading', // Elemento que activa la animación
-                    start: 'top 80%',     // La animación comienza cuando el elemento esté al 80% desde el top de la ventana
-                    end: 'bottom top',    // El trigger se activa cuando el elemento sale de la vista
-                    scrub: true,          // Permite que la animación esté sincronizada con el desplazamiento
-                },
-                opacity: 0,
-                y: 50,
-                duration: 1,
-            });
-
-            // Animar el párrafo
-            // gsap.from('#paragraph', {
-            //     scrollTrigger: {
-            //         trigger: '#paragraph',
-            //         start: 'top 80%',
-            //         end: 'bottom top',
-            //         scrub: true,
-            //     },
-            //     opacity: 0,
-            //     y: 50,
-            //     duration: 1,
-            //     delay: 0.3,
-            // });
-
-            // Animar la imagen
-            gsap.from('#image', {
-                scrollTrigger: {
-                    trigger: '#image',
-                    start: 'top 80%',
-                    end: 'bottom top',
-                    scrub: true,
-                },
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                delay: 0.6,
-            });
-        });
-    </script> -->
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
