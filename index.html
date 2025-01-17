@@ -13,9 +13,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
     <!-- Firebase Firestore -->
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore-compat.js"></script>
-    <!-- GSAP -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script> -->
 
     <style>
         body {
@@ -395,60 +392,13 @@
         });
     </script>
 
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Registrar el plugin ScrollTrigger
-            gsap.registerPlugin(ScrollTrigger);
-
-            // Animar el título
-            gsap.from('#heading', {
-                scrollTrigger: {
-                    trigger: '#heading', // Elemento que activa la animación
-                    start: 'top 80%',     // La animación comienza cuando el 90% del elemento es visible
-                    // end: 'top 10%',       // El trigger termina cuando el 10% del elemento ha salido de la vista
-                    once: true,           // Solo se activa una vez (cuando el elemento entra en la vista)
-                },
-                opacity: 0,
-                y: 50,
-                duration: 1,
-            });
-
-            // Animar el párrafo
-            gsap.from('#paragraph', {
-                scrollTrigger: {
-                    trigger: '#paragraph',
-                    start: 'top 90%',
-                    end: 'top 10%',
-                    once: true,
-                },
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                delay: 0.3,
-            });
-
-            // Animar la imagen
-            gsap.from('#image', {
-                scrollTrigger: {
-                    trigger: '#image',
-                    start: 'top 90%',
-                    end: 'top 10%',
-                    once: true,
-                },
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                delay: 0.6,
-            });
-        });
-    </script> -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible-opacity");
-                }
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible-opacity");
+                    }
                 });
             });
 
