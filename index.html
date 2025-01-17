@@ -14,8 +14,8 @@
     <!-- Firebase Firestore -->
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore-compat.js"></script>
     <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script> -->
 
     <style>
         body {
@@ -137,6 +137,17 @@
         .form-card {
             background-color: #FAFAFA;
         }
+
+        .hidden-opacity {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .visible-opacity {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 
@@ -151,12 +162,12 @@
 
     <div class="bg-cover bg-center h-20 w-full flex flex-col justify-center items-center pt-4"
         style="background-image: url('img/fondo_1.png');">
-        <img src="img/compaltil.png" alt="compartir" class="p-8" id="image">
+        <img src="img/compaltil.png" alt="compartir" class="p-8 hidden-opacity" id="animated-paragraph">
     </div>
 
     <div class="bg-cover bg-center h-10 w-full flex flex-col justify-center items-center mt-0"
         style="background-image: url('img/fondo_1.png');">
-        <img src="img/junto.png" alt="junto" class="px-6 pb-6" id="image">
+        <img src="img/junto.png" alt="junto" class="px-6 pb-6 hidden-opacity" id="animated-paragraph">
     </div>
 
     <!-- Contador -->
@@ -188,21 +199,21 @@
 
     <!-- Cuerpo principal -->
     <main class="flex flex-col items-center justify-center w-full max-w-md px-4 mt-8">
-        <h2 id="heading" class="text-md mb-5"><b>DETALLES DE LA BODA</b></h2>
+        <h2 id="animated-paragraph" class="text-md mb-5 hidden-opacity"><b>DETALLES DE LA BODA</b></h2>
 
-        <div id="heading" class="border py-2 px-8">
+        <div id="animated-paragraph" class="border py-2 px-8 hidden-opacity">
             <h3>CEREMONIA</h3>
         </div>
 
-        <div id="paragraph" class="my-6">
+        <div id="animated-paragraph" class="my-6 hidden-opacity">
             <img src="img/Iglesia.png" alt="">
         </div>
 
         <div>
-            <p id="paragraph"><b>Parroquia San Antonio de Padua</b></p>
-            <p id="paragraph">Santuario Ntra. Sra. De Fátima</p>
-            <p id="paragraph" class="mb-3">Planes de Rendero</p>
-            <p id="paragraph"><b>2:30 PM</b></p>
+            <p id="animated-paragraph" class="hidden-opacity"><b>Parroquia San Antonio de Padua</b></p>
+            <p id="animated-paragraph" class="hidden-opacity">Santuario Ntra. Sra. De Fátima</p>
+            <p id="animated-paragraph" class="mb-3 hidden-opacity">Planes de Renderos</p>
+            <p id="animated-paragraph" class="hidden-opacity"><b>2:30 PM</b></p>
         </div>
 
         <a href="https://waze.com/ul?ll=13.64341,-89.187634&navigate=yes" target="_blank" rel="noopener noreferrer"
@@ -210,18 +221,18 @@
             <button class="px-4 py-2">Ubicación</button>
         </a>
 
-        <div id="heading" class="border py-2 px-8">
+        <div id="heading" class="border py-2 px-8 hidden-opacity">
             <h3>RECEPCIÓN</h3>
         </div>
 
-        <div id="paragraph" class="py-8">
+        <div id="animated-paragraph" class="py-8 hidden-opacity">
             <img src="img/Quadra.png" alt="Quadra Logo">
         </div>
 
         <div>
-            <p id="paragraph">LA QUADRA</p>
-            <p id="paragraph" class="mb-3">Planes de Rendero</p>
-            <p id="paragraph"><b>4:00 PM</b></p>
+            <p id="animated-paragraph" class="hidden-opacity">LA QUADRA</p>
+            <p id="animated-paragraph" class="mb-3 hidden-opacity">Planes de Renderos</p>
+            <p id="animated-paragraph" class="hidden-opacity"><b>4:30 PM</b></p>
         </div>
 
         <a href="https://waze.com/ul?ll=13.652894,-89.197719&navigate=yes" target="_blank" rel="noopener noreferrer"
@@ -240,12 +251,12 @@
 
     <div class="bg-cover bg-center h-24 w-full flex flex-col justify-center items-center pt-4"
         style="background-image: url('img/fondo_sobre.png');">
-        <img src="img/grupo_mail.png" alt="compartir" id="paragraph" class="p-4">
+        <img src="img/grupo_mail.png" alt="compartir" id="animated-paragraph" class="p-4 hidden-opacity">
     </div>
 
     <div class="bg-cover bg-center h-20 w-full flex flex-col justify-center items-center pb-4"
         style="background-image: url('img/fondo_sobre.png');">
-        <img src="img/grupo_agradecemos.png" alt="compartir" id="paragraph" class="p-4">
+        <img src="img/grupo_agradecemos.png" alt="compartir" id="animated-paragraph" class="p-4 hidden-opacity">
     </div>
 
     <!-- Formulario -->
@@ -384,7 +395,7 @@
         });
     </script>
 
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Registrar el plugin ScrollTrigger
             gsap.registerPlugin(ScrollTrigger);
@@ -430,6 +441,22 @@
                 delay: 0.6,
             });
         });
+    </script> -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible-opacity");
+                }
+                });
+            });
+
+            // Elementos que queremos observar
+            const elements = document.querySelectorAll(".hidden-opacity");
+            elements.forEach((el) => observer.observe(el));
+        });
+
     </script>
 </body>
 
