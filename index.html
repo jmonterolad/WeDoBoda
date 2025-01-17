@@ -154,7 +154,7 @@
         <img src="img/foto_wedo_1.png" alt="">
 
         <img src="img/animacion_wedo_1.gif" alt="GIF decorativo"
-            class="absolute top-10 left-1/2 transform -translate-x-1/2 w-96 h-auto">
+            class="absolute top-12 left-1/2 transform -translate-x-1/2 w-96 h-auto">
     </div>
 
     <div class="bg-cover bg-center h-20 w-full flex flex-col justify-center items-center pt-4"
@@ -172,8 +172,8 @@
         <h2>SOLO FALTAN</h2>
         <div id="countdown" class="flex justify-center gap-6 text-center">
             <div>
-                <span id="weeks" class="block text-3xl contador-numbers">00</span>
-                <span class="block text-sm contador-text">SEMANAS</span>
+                <span id="months" class="block text-3xl contador-numbers">00</span>
+                <span class="block text-sm contador-text">MESES</span>
             </div>
             <div>
                 <span id="days" class="block text-3xl contador-numbers">00</span>
@@ -293,7 +293,7 @@
             </div>
 
             <div class="flex flex-col items-center justify-center mb-3">
-                <img src="img/ninos1.png" alt="ninos" class="max-h-6">
+                <img src="img/agradecemos_tu_comprension.png" alt="ninos" class="max-h-6">
             </div>
         </div>
     </div>
@@ -304,36 +304,41 @@
 
     <script>
         // Fecha de la boda
-        const weddingDate = new Date("2025-03-15T14:30:00").getTime();
+        const weddingDate = new Date("2025-03-15T14:30:00");
 
         function updateCountdown() {
-            const now = new Date().getTime();
+            const now = new Date();
             const timeLeft = weddingDate - now;
 
-            // Cálculos para semanas, días, horas y minutos
-            const totalDays = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const weeks = Math.floor(totalDays / 7);
-            const days = totalDays % 7;
+            if (timeLeft < 0) {
+                document.getElementById("countdown").innerHTML = "¡Hoy es el gran día!";
+                clearInterval(countdownInterval);
+                return;
+            }
+
+            // Cálculo de meses
+            let months = weddingDate.getMonth() - now.getMonth() + (12 * (weddingDate.getFullYear() - now.getFullYear()));
+            if (now.getDate() > weddingDate.getDate()) {
+                months -= 1; // Si estamos más allá del día, restamos un mes.
+            }
+
+            // Cálculo de días
+            const tempDate = new Date(now.getFullYear(), now.getMonth() + months, weddingDate.getDate());
+            const days = Math.floor((tempDate - now) / (1000 * 60 * 60 * 24));
+
+            // Cálculo de horas y minutos
             const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
 
             // Actualiza el HTML
-            document.getElementById("weeks").innerText = weeks.toString().padStart(2, '0');
+            document.getElementById("months").innerText = months.toString().padStart(2, '0');
             document.getElementById("days").innerText = days.toString().padStart(2, '0');
             document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
             document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-
-            // Detener el contador si llega la fecha
-            if (timeLeft < 0) {
-                clearInterval(countdownInterval);
-                document.getElementById("countdown").innerHTML = "¡Hoy es el gran día!";
-            }
         }
 
         // Actualizar cada segundo
         const countdownInterval = setInterval(updateCountdown, 1000);
-
-        // Inicializar el contador
         updateCountdown();
     </script>
 
