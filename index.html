@@ -239,10 +239,16 @@
         <img src="img/Foto_2.png" alt="">
     </div>
 
-    <div class="bg-cover bg-center h-40 w-full flex flex-col justify-center items-center pt-4"
+    <!-- <div class="bg-cover bg-center h-40 w-full flex flex-col justify-center items-center"
         style="background-image: url('img/fondo_1.png');">
-        <img src="img/grupo_regalo.png" alt="compartir" class="p-8" id="image">
+        <img src="img/grupo_regalo.png" alt="regalo" class="p-8" id="heading">
+    </div> -->
+
+    <div class="bg-cover bg-center h-36 w-full flex flex-col justify-center items-center relative"
+        style="background-image: url('img/fondo_1.png');">
+        <img src="img/grupo_regalo.png" alt="regalo" class="p-8 relative z-10" id="image">
     </div>
+
 
     <!-- Formulario -->
     <div class="flex flex-col items-center justify-center w-full max-w-md px-6 mt-8">
@@ -380,7 +386,7 @@
         });
     </script>
 
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Registrar el plugin ScrollTrigger
             gsap.registerPlugin(ScrollTrigger);
@@ -394,8 +400,51 @@
             });
 
             // Animar el párrafo
+            gsap.from('#paragraph', {
+                scrollTrigger: '#paragraph',
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: 0.3,
+            });
+
+            // Animar la imagen
+            gsap.from('#image', {
+                scrollTrigger: '#image',
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: 0.6,
+            });
+        });
+    </script> -->
+
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Registrar el plugin ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Animar el título
+            gsap.from('#heading', {
+                scrollTrigger: {
+                    trigger: '#heading', // Elemento que activa la animación
+                    start: 'top 80%',     // La animación comienza cuando el elemento esté al 80% desde el top de la ventana
+                    end: 'bottom top',    // El trigger se activa cuando el elemento sale de la vista
+                    scrub: true,          // Permite que la animación esté sincronizada con el desplazamiento
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+            });
+
+            // Animar el párrafo
             // gsap.from('#paragraph', {
-            //     scrollTrigger: '#paragraph',
+            //     scrollTrigger: {
+            //         trigger: '#paragraph',
+            //         start: 'top 80%',
+            //         end: 'bottom top',
+            //         scrub: true,
+            //     },
             //     opacity: 0,
             //     y: 50,
             //     duration: 1,
@@ -404,7 +453,60 @@
 
             // Animar la imagen
             gsap.from('#image', {
-                scrollTrigger: '#image',
+                scrollTrigger: {
+                    trigger: '#image',
+                    start: 'top 80%',
+                    end: 'bottom top',
+                    scrub: true,
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: 0.6,
+            });
+        });
+    </script> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Registrar el plugin ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Animar el título
+            gsap.from('#heading', {
+                scrollTrigger: {
+                    trigger: '#heading', // Elemento que activa la animación
+                    start: 'top 80%',     // La animación comienza cuando el 90% del elemento es visible
+                    // end: 'top 10%',       // El trigger termina cuando el 10% del elemento ha salido de la vista
+                    once: true,           // Solo se activa una vez (cuando el elemento entra en la vista)
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+            });
+
+            // Animar el párrafo
+            gsap.from('#paragraph', {
+                scrollTrigger: {
+                    trigger: '#paragraph',
+                    start: 'top 90%',
+                    end: 'top 10%',
+                    once: true,
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: 0.3,
+            });
+
+            // Animar la imagen
+            gsap.from('#image', {
+                scrollTrigger: {
+                    trigger: '#image',
+                    start: 'top 90%',
+                    end: 'top 10%',
+                    once: true,
+                },
                 opacity: 0,
                 y: 50,
                 duration: 1,
